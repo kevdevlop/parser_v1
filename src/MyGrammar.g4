@@ -25,4 +25,4 @@ SUB : '-' ;
 LPAREN : '(' ;
 RPAREN : ')' ;
 
-WS	: [ \t]+ -> skip ;
+WS	: [ \t]+ -> skip ; 
