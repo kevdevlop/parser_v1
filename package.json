@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "start:dev": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -19,13 +20,23 @@
   },
   "homepage": "https://github.com/kevdevlop/parser_v1#readme",
   "devDependencies": {
+    "expose-loader": "^0.7.5",
+    "jquery": "^3.3.1",
+    "node-sass": "^4.9.2",
+    "popper.js": "^1.14.3",
+    "postcss-loader": "^2.1.6",
+    "sass-loader": "^7.0.3",
+    "sizzle": "^2.3.3",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.16.1",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-jquery-ui": "^1.0.0"
   },
   "dependencies": {
     "antlr4": "^4.7.1",
     "antlr4-webpack-loader": "^0.1.1",
+    "bootstrap": "^4.1.2",
     "lodash": "^4.17.10"
   }
 }
