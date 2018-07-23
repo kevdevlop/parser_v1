@@ -15,14 +15,29 @@ expr: expr (MUL|DIV) expr 	#MulDiv
 	;
 
 
+POINT : '.';
+POW : '^';
+
 ID	: [a-zA-Z]+ ;
 NEWLINE : [\r\n]+ ;
 INT     : [0-9]+ ;
+NUMERO : INT ('.' ('0' .. '9') +);
 MUL : '*' ;
 DIV : '/' ;
 ADD : '+' ;
 SUB : '-' ;
 LPAREN : '(' ;
 RPAREN : ')' ;
+
+SIN : 'sin';
+COS : 'cos' ;
+TAN : 'tan' ;
+LN 	: 'ln' ;
+LOG : 'log' ;
+RAIZ: 'sqrt';
+PI: 'pi' ;
+
+NUMERO_CIENTIFICO : NUMERO (('E' | 'e') SIGN? NUMERO)?;
+SIGN : ('+' | '-');
 
 WS	: [ \t]+ -> skip ; 
