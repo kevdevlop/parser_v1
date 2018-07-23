@@ -35,7 +35,6 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  		var value = this.visit(ctx.expr());
  		this.memoria[id] = value;
  		console.log(this.memoria);
- 		//console.log("visitAssign  id: "+id + " value: "+ value);
  		return value;
  	}
 
@@ -69,7 +68,7 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  		return id;
  	}
 
- 	visitParens(cxt){
+ 	visitParens(ctx){
  		console.log("visitParens "+ctx.getText());
  		return this.visit(ctx.expr());
  	}
@@ -79,10 +78,7 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  		return parseInt(ctx.INT().getText());
  	}
 
- 	
-
- 	 containsKey(array,id) {
- 		// body...
+ 	containsKey(array,id) {
  		for (var key in array) {
  			if (key === id) {
  				return true;
@@ -90,14 +86,15 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  		}
  		return false;
  	}
-
-  //...
  }
+
+
 document.getElementById("btnAntlr").addEventListener("click", initAntlr);
-//const result = new MyVisitor().visit(parser.myStartRule());
+document.getElementById("btnClear").addEventListener("click", clear);
+
 function initAntlr() {
-  var out = document.getElementById("textOut");
-  const input = document.getElementById("textInput").value; // Load string content
+  	var out = document.getElementById("textOut");
+  	const input = document.getElementById("textInput").value;
 	var mem = {}
 	const lexer = new MyGrammarLexer(new InputStream(input));
 	var tokens  = new CommonTokenStream(lexer);
@@ -105,9 +102,13 @@ function initAntlr() {
 	parser.buildParseTrees = true;
 	var tree = parser.myStartRule()
 	const result = new MyVisitor(mem).visit(tree);
-  // Lodash, currently included via a script, is required for this line to work
-  out.value = result;
-  
+  	out.value = result;
+}
+
+function clear() {
+	// body...
+	document.getElementById("textOut").value = "";
+	document.getElementById("textInput").value = "";
 }
 
 
