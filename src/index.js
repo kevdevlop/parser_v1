@@ -6,48 +6,89 @@ import { InputStream, CommonTokenStream } from 'antlr4/index';
 import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g4';
  
  class MyVisitor extends MyGrammarVisitor {
- 	
+
+ 	constructor(memoria) {
+ 		super();
+	    this.memoria = memoria
+	  }
 
  	visitMulDiv(ctx){
- 		// left = visit(ctx.expr(0));
- 		// right = visit(ctx.expr(1));
- 		// console.log(left+" "+right);
- 		// if (ctx.op.getType() == '*') {
- 		// 	return left * right;
- 		// }
- 		// return left / right;
- 		console.log("visitMulDiv"+this.visit(ctx.expr(1)));
- 		return true;
+ 		var left = this.visit(ctx.expr(0));
+ 		var right = this.visit(ctx.expr(1));
+ 		console.log("visitMulDiv "+"left: "+left + "right: "+right);
+
+ 		if (right != null)
+            {
+                if (ctx.DIV(0) == null)
+                {
+                    return left * right;
+
+                }
+
+                return left / right;
+            }
+        return left;
  	}
 
  	visitAssign(ctx){
- 		console.log("visitAssign"+ctx.getText());
- 		return true;
+ 		var id = ctx.ID().getText();
+ 		var value = this.visit(ctx.expr());
+ 		this.memoria[id] = value;
+ 		console.log(this.memoria);
+ 		//console.log("visitAssign  id: "+id + " value: "+ value);
+ 		return value;
  	}
 
- 	visitprintExpr(ctx){
-		console.log("print"+ctx.getText());
- 		return true;
+ 	visitPrintExpr(ctx){
+ 		var value = this.visit(ctx.expr());
+		console.log("print "+value);
+ 		return value;
  	}
 
  	visitAddSuv(ctx){
- 		console.log("visitAddSuv"+ctx.getText());
- 		return true;
+ 		var left = this.visit(ctx.expr(0));
+ 		var right = this.visit(ctx.expr(1));
+ 		console.log("visitAddSuv "+"left: "+left + "right: "+right);
+ 		if (right != null)
+            {
+                if (ctx.ADD(0) == null)
+                {
+                    return left - right;
+
+                }
+
+                return left + right;
+            }
+        return left;
  	}
 
  	visitId(ctx){
- 		console.log("visitId"+ctx.getText());
- 		return true;
+ 		var id = ctx.ID().getText();
+ 		if ( this.containsKey(this.memoria, id) ) return this.memoria[id];
+ 		console.log("visitId "+this.memoria);
+ 		return id;
  	}
 
  	visitParens(cxt){
- 		console.log("visitParens"+ctx.getText());
- 		return true;
+ 		console.log("visitParens "+ctx.getText());
+ 		return this.visit(ctx.expr());
  	}
 
  	visitInt(ctx){
- 		console.log("visitInt"+ctx.getText());
- 		return true;
+ 		console.log("visitInt "+ctx.getText());
+ 		return parseInt(ctx.INT().getText());
+ 	}
+
+ 	
+
+ 	 containsKey(array,id) {
+ 		// body...
+ 		for (var key in array) {
+ 			if (key === id) {
+ 				return true;
+ 			}
+ 		}
+ 		return false;
  	}
 
   //...
@@ -57,13 +98,13 @@ document.getElementById("btnAntlr").addEventListener("click", initAntlr);
 function initAntlr() {
   var out = document.getElementById("textOut");
   const input = document.getElementById("textInput").value; // Load string content
-	
+	var mem = {}
 	const lexer = new MyGrammarLexer(new InputStream(input));
 	var tokens  = new CommonTokenStream(lexer);
 	const parser = new MyGrammarParser(tokens);
 	parser.buildParseTrees = true;
 	var tree = parser.myStartRule()
-	const result = new MyVisitor().visit(tree);
+	const result = new MyVisitor(mem).visit(tree);
   // Lodash, currently included via a script, is required for this line to work
   out.value = result;
   
