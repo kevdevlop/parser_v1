@@ -105,6 +105,16 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
         return left;
     }
 
+    visitFact(ctx) {
+        var left = this.visit(ctx.expr(0));
+        var total = 1;
+        var i=1; 
+        for (i=1; i<=left; i++) {
+            total = total * i; 
+        }
+        return total; 
+    }
+
     visitFuncion(ctx){
         var type = this.getStrinToFunciones(ctx.getText());
         console.log("visitFuncion "+type);

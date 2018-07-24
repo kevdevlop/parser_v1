@@ -11,6 +11,7 @@ expr: expr (MUL|DIV) expr			#MulDiv
 	| expr (ADD|SUB) expr			#AddSuv
 	| LPAREN expr POW expr RPAREN	#Pow
 	| LPAREN expr MOD expr RPAREN 	#Mod
+	| LPAREN expr FACT RPAREN 		#Fact
 	| fun							#Funcion
 	| INT							#int
 	| ID							#id
@@ -36,6 +37,7 @@ POINT : '.';
 POW : '^';
 MOD : '%';
 PI: 'pi' ;
+FACT: '!';
 
 ID	: [a-zA-Z]+ ;
 NEWLINE : [\r\n]+ ;
