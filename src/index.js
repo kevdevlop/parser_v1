@@ -74,7 +74,7 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  	}
 
  	visitNum(ctx){
- 		console.log("visitFloat "+ctx.getText());
+ 		console.log("visitNum "+ctx.getText());
  		return parseFloat(ctx.NUM().getText());
  	}
 

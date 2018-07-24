@@ -41,14 +41,13 @@ FACT: '!';
 
 ID	: [a-zA-Z]+ ;
 NEWLINE : [\r\n]+ ;
-SIGN : ('+' | '-');
-INT     : [0-9]+ ;
-NUM : (SIGN)? INT ('.' ('0' .. '9') +);
+NUM : ('0' .. '9')+ ('.' ('0' .. '9')+)?;
 MUL : '*' ;
 DIV : '/' ;
 ADD : '+' ;
 SUB : '-' ;
 LPAREN : '(' ;
 RPAREN : ')' ;
+SIGN : ('+' | '-');
 
 WS	: [ \t]+ -> skip ;
