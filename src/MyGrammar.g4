@@ -50,7 +50,6 @@ SUB : '-' ;
 LPAREN : '(' ;
 RPAREN : ')' ;
 
-NUMERO_CIENTIFICO : NUMERO (('E' | 'e') SIGN? NUMERO)?;
 SIGN : ('+' | '-');
 
 WS	: [ \t]+ -> skip ;
