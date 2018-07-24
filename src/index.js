@@ -78,6 +78,11 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  		return parseInt(ctx.INT().getText());
  	}
 
+    visitPi(ctx){
+        console.log("visitInt "+ctx.getText());
+        return 3.14159265358979323846;
+    }
+
     visitPow(ctx){
         var left = this.visit(ctx.expr(0));
         var right = this. visit(ctx.expr(1));
@@ -87,6 +92,27 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
             return Math.pow(left, right);
         }
         return left;
+    }
+
+    visitMod(ctx){
+        var left = this.visit(ctx.expr(0));
+        var right = this. visit(ctx.expr(1));
+        console.log("visitPow "+"left: "+left + "right: "+right);
+
+        if (right != null) {
+            return left % right;
+        }
+        return left;
+    }
+
+    visitFact(ctx) {
+        var left = this.visit(ctx.expr(0));
+        var total = 1;
+        var i=1; 
+        for (i=1; i<=left; i++) {
+            total = total * i; 
+        }
+        return total; 
     }
 
     visitFuncion(ctx){

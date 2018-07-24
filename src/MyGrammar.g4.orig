@@ -7,16 +7,26 @@ stat: expr NEWLINE  		#printExpr
 	| NEWLINE				#blank
 	;
 
+<<<<<<< HEAD
+expr: expr (MUL|DIV) expr	#MulDiv
+	| expr (ADD|SUB) expr	#AddSuv
+	| LPAREN expr POW expr RPAREN		#Pow
+	| funciones LPAREN expr RPAREN		#Funcion
+	| INT					#int
+	| ID					#id
+	| LPAREN expr RPAREN	#parens
+=======
 expr: expr (MUL|DIV) expr			#MulDiv
 	| expr (ADD|SUB) expr			#AddSuv
 	| LPAREN expr POW expr RPAREN	#Pow
 	| LPAREN expr MOD expr RPAREN 	#Mod
 	| LPAREN expr FACT RPAREN 		#Fact
-	| funciones LPAREN expr RPAREN	#Funcion
+	| fun							#Funcion
 	| INT							#int
 	| ID							#id
 	| LPAREN expr RPAREN			#parens
 	| PI 							#Pi
+>>>>>>> 87b99db2f6f8a5de0620e4d63dea067f5bb8003e
 	;
 
 fun: funciones LPAREN expr RPAREN;
