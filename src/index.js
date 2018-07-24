@@ -73,13 +73,13 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  		return this.visit(ctx.expr());
  	}
 
- 	visitInt(ctx){
- 		console.log("visitInt "+ctx.getText());
- 		return parseInt(ctx.INT().getText());
+ 	visitNum(ctx){
+ 		console.log("visitFloat "+ctx.getText());
+ 		return parseFloat(ctx.NUM().getText());
  	}
 
     visitPi(ctx){
-        console.log("visitInt "+ctx.getText());
+        console.log("visitPi "+ctx.getText());
         return 3.14159265358979323846;
     }
 

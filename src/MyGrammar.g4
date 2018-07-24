@@ -13,7 +13,7 @@ expr: expr (MUL|DIV) expr			#MulDiv
 	| LPAREN expr MOD expr RPAREN 	#Mod
 	| LPAREN expr FACT RPAREN 		#Fact
 	| funciones LPAREN expr RPAREN	#Funcion
-	| INT							#int
+	| NUM							#Num
 	| ID							#id
 	| LPAREN expr RPAREN			#parens
 	| PI 							#Pi
@@ -41,15 +41,14 @@ FACT: '!';
 
 ID	: [a-zA-Z]+ ;
 NEWLINE : [\r\n]+ ;
+SIGN : ('+' | '-');
 INT     : [0-9]+ ;
-NUMERO : INT ('.' ('0' .. '9') +);
+NUM : (SIGN)? INT ('.' ('0' .. '9') +);
 MUL : '*' ;
 DIV : '/' ;
 ADD : '+' ;
 SUB : '-' ;
 LPAREN : '(' ;
 RPAREN : ')' ;
-
-SIGN : ('+' | '-');
 
 WS	: [ \t]+ -> skip ;
