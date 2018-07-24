@@ -92,35 +92,42 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
     visitFuncion(ctx){
         var type = this.getStrinToFunciones(ctx.getText());
         console.log("visitFuncion "+type);
-        // switch (type)
-        //     {
-        //         case "cos":
-        //             return Math.cos(this.visit(ctx.expr()));
+        switch (type)
+            {
+                case "cos":
+                    console.log("cos");
+                    return Math.cos(this.visit(ctx.expr()));
 
-        //         case "sin":
-        //             return Math.sin(this.visit(ctx.expr()));
+                case "sin":
+                    console.log("sin");
+                    return Math.sin(this.visit(ctx.expr()));
 
-        //         case "tan":
-        //             return Math.tan(this.visit(ctx.expr()));
+                case "tan":
+                    console.log("tan");
+                    return Math.tan(this.visit(ctx.expr()));
 
-        //         case "acos":
-        //             return Math.acos(this.visit(ctx.expr()));
+                case "acos":
+                    console.log("acos");
+                    return Math.acos(this.visit(ctx.expr()));
 
-        //         case "asin":
-        //             return Math.asin(this.visit(ctx.expr()));
+                case "asin":
+                    console.log("asin");
+                    return Math.asin(this.visit(ctx.expr()));
 
-        //         case "atan":
-        //             return Math.atan(this.visit(ctx.expr()));
+                case "atan":
+                    console.log("atan");
+                    return Math.atan(this.visit(ctx.expr()));
 
-        //         case "ln":
-        //             return Math.log(this.visit(ctx.expr()));
+                case "ln":
+                    console.log("ln");
+                    return Math.log(this.visit(ctx.expr()));
 
-        //         case "log":
-        //             return Math.log(this.visit(ctx.expr()));
-        //     }
+                case "log":
+                    console.log("log");
+                    return Math.log(this.visit(ctx.expr()));
+            }
 
-        //     return this.visit(ctx.expr());
-        return type;
+        return this.visit(ctx.expr());
     }
 
  	containsKey(array,id) {

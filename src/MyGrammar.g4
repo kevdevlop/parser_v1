@@ -10,7 +10,7 @@ stat: expr NEWLINE  		#printExpr
 expr: expr (MUL|DIV) expr	#MulDiv
 	| expr (ADD|SUB) expr	#AddSuv
 	| LPAREN expr POW expr RPAREN		#Pow
-	| fun		#Funcion
+	| funciones LPAREN expr RPAREN		#Funcion
 	| INT					#int
 	| ID					#id
 	| LPAREN expr RPAREN	#parens
