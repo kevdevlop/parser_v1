@@ -78,6 +78,11 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  		return parseInt(ctx.INT().getText());
  	}
 
+    visitPi(ctx){
+        console.log("visitInt "+ctx.getText());
+        return 3.14159265358979323846;
+    }
+
     visitPow(ctx){
         var left = this.visit(ctx.expr(0));
         var right = this. visit(ctx.expr(1));
