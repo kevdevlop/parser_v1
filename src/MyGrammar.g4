@@ -19,7 +19,7 @@ expr: expr (MUL|DIV) expr	#MulDiv
 funciones: SIN
 	|	COS
 	|	TAN
-	|	RAIZ
+	|	RAIZ 
 	| 	PI
 	| 	LN
 	|	LOG
