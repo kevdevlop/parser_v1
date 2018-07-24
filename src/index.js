@@ -10,6 +10,7 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  	constructor(memoria) {
  		super();
 	    this.memoria = memoria
+        this.ret = []
 	  }
 
  	visitMulDiv(ctx){
@@ -20,11 +21,12 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  		if (right != null)
             {
                 if (ctx.DIV(0) == null)
-                {
+                {   
+                    console.log("multiplicando "+"left: "+left + "right: "+right);
                     return left * right;
 
                 }
-
+                console.log("dividiendo "+"left: "+left + "right: "+right);
                 return left / right;
             }
         return left;
@@ -164,8 +166,9 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
         var id = ctx.ID().getText();
         var value = this.memoria[id];
         console.log("printID " + id +" "+ value);
-        var ret = " " + id + "= " + value; 
-        return ret;
+        var retu = " " + id + "= " + value; 
+        this.ret.push(retu);
+        return retu;
 
     }
 
@@ -189,7 +192,7 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
     }
 
     getMemoria(){
-        return this.memoria;
+        return this.ret;
     }
  }
 
@@ -208,7 +211,7 @@ function initAntlr() {
 	var tree = parser.myStartRule()
     var visitor =  new MyVisitor(mem);
 	const result = visitor.visit(tree);
-  	out.value = result;
+  	out.value = visitor.getMemoria();
 }
 
 function clear() {
