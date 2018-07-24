@@ -10,21 +10,24 @@ stat: expr NEWLINE  		#printExpr
 expr: expr (MUL|DIV) expr	#MulDiv
 	| expr (ADD|SUB) expr	#AddSuv
 	| LPAREN expr POW expr RPAREN		#Pow
+	| fun		#Funcion
 	| INT					#int
 	| ID					#id
 	| LPAREN expr RPAREN	#parens
 	;
 
+fun: funciones LPAREN expr RPAREN;
 
-funciones: SIN
-	|	COS
-	|	TAN
-	|	RAIZ 
-	| 	PI
-	| 	LN
-	|	LOG
-	|	RAIZ
+funciones: 'sin'
+	|	'cos'
+	|	'tan'
+	|	'atan'
+	|	'asin'
+	|	'acos'
+	| 	'ln'
+	|	'log'
 	;
+
 
 POINT : '.';
 POW : '^';
@@ -39,16 +42,10 @@ ADD : '+' ;
 SUB : '-' ;
 LPAREN : '(' ;
 RPAREN : ')' ;
-
-SIN : 'sin';
-COS : 'cos' ;
-TAN : 'tan' ;
-LN 	: 'ln' ;
-LOG : 'log' ;
 RAIZ: 'sqrt';
 PI: 'pi' ;
 
 NUMERO_CIENTIFICO : NUMERO (('E' | 'e') SIGN? NUMERO)?;
 SIGN : ('+' | '-');
 
-WS	: [ \t]+ -> skip ; 
+WS	: [ \t]+ -> skip ;

@@ -81,10 +81,46 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
     visitPow(ctx){
         var left = this.visit(ctx.expr(0));
         var right = this. visit(ctx.expr(1));
+        console.log("visitPow "+"left: "+left + "right: "+right);
+
         if (right != null) {
             return Math.pow(left, right);
         }
         return left;
+    }
+
+    visitFuncion(ctx){
+        var type = this.getStrinToFunciones(ctx.getText());
+        console.log("visitFuncion "+type);
+        // switch (type)
+        //     {
+        //         case "cos":
+        //             return Math.cos(this.visit(ctx.expr()));
+
+        //         case "sin":
+        //             return Math.sin(this.visit(ctx.expr()));
+
+        //         case "tan":
+        //             return Math.tan(this.visit(ctx.expr()));
+
+        //         case "acos":
+        //             return Math.acos(this.visit(ctx.expr()));
+
+        //         case "asin":
+        //             return Math.asin(this.visit(ctx.expr()));
+
+        //         case "atan":
+        //             return Math.atan(this.visit(ctx.expr()));
+
+        //         case "ln":
+        //             return Math.log(this.visit(ctx.expr()));
+
+        //         case "log":
+        //             return Math.log(this.visit(ctx.expr()));
+        //     }
+
+        //     return this.visit(ctx.expr());
+        return type;
     }
 
  	containsKey(array,id) {
@@ -95,6 +131,16 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  		}
  		return false;
  	}
+
+    getStrinToFunciones(string){
+        var i=0;
+        var salida = ""
+        while(string[i] != '('){
+            salida += string[i];
+            i++;
+        }
+        return salida;
+    }
  }
 
 
