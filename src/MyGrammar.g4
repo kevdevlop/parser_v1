@@ -5,6 +5,7 @@ myStartRule: stat+ ;
 stat: expr NEWLINE  		#printExpr
 	| ID '=' expr NEWLINE 	#Assign
 	| NEWLINE				#blank
+	| PRINT ID			#PrintId
 	;
 
 expr: expr (MUL|DIV) expr			#MulDiv
@@ -33,6 +34,7 @@ funciones: 'sin'
 	;
 
 
+PRINT : 'print';
 POINT : '.';
 POW : '^';
 MOD : '%';

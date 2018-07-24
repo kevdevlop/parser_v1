@@ -160,6 +160,15 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
         return this.visit(ctx.expr());
     }
 
+    visitPrintId(ctx){
+        var id = ctx.ID().getText();
+        var value = this.memoria[id];
+        console.log("printID " + id +" "+ value);
+        var ret = " " + id + "= " + value; 
+        return ret;
+
+    }
+
  	containsKey(array,id) {
  		for (var key in array) {
  			if (key === id) {
@@ -178,6 +187,10 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
         }
         return salida;
     }
+
+    getMemoria(){
+        return this.memoria;
+    }
  }
 
 
@@ -193,7 +206,8 @@ function initAntlr() {
 	const parser = new MyGrammarParser(tokens);
 	parser.buildParseTrees = true;
 	var tree = parser.myStartRule()
-	const result = new MyVisitor(mem).visit(tree);
+    var visitor =  new MyVisitor(mem);
+	const result = visitor.visit(tree);
   	out.value = result;
 }
 
