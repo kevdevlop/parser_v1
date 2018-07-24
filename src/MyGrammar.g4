@@ -39,7 +39,7 @@ MOD : '%';
 PI: 'pi' ;
 FACT: '!';
 
-ID	: [a-zA-Z]+ ;
+ID	: [a-zA-Z]+([0-9]+)? ;
 NEWLINE : [\r\n]+ ;
 INT     : [0-9]+ ;
 NUMERO : INT ('.' ('0' .. '9') +);

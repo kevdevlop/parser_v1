@@ -151,6 +151,10 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
                 case "log":
                     console.log("log");
                     return Math.log(this.visit(ctx.expr()));
+
+                case "sqrt":
+                    console.log("raiz");
+                    return Math.sqrt(this.visit(ctx.expr()));
             }
 
         return this.visit(ctx.expr());
