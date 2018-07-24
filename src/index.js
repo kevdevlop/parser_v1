@@ -89,6 +89,17 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
         return left;
     }
 
+    visitMod(ctx){
+        var left = this.visit(ctx.expr(0));
+        var right = this. visit(ctx.expr(1));
+        console.log("visitPow "+"left: "+left + "right: "+right);
+
+        if (right != null) {
+            return left % right;
+        }
+        return left;
+    }
+
     visitFuncion(ctx){
         var type = this.getStrinToFunciones(ctx.getText());
         console.log("visitFuncion "+type);

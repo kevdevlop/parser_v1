@@ -7,13 +7,15 @@ stat: expr NEWLINE  		#printExpr
 	| NEWLINE				#blank
 	;
 
-expr: expr (MUL|DIV) expr	#MulDiv
-	| expr (ADD|SUB) expr	#AddSuv
-	| LPAREN expr POW expr RPAREN		#Pow
-	| fun		#Funcion
-	| INT					#int
-	| ID					#id
-	| LPAREN expr RPAREN	#parens
+expr: expr (MUL|DIV) expr			#MulDiv
+	| expr (ADD|SUB) expr			#AddSuv
+	| LPAREN expr POW expr RPAREN	#Pow
+	| LPAREN expr MOD expr RPAREN 	#Mod
+	| fun							#Funcion
+	| INT							#int
+	| ID							#id
+	| LPAREN expr RPAREN			#parens
+	| PI 							#Pi
 	;
 
 fun: funciones LPAREN expr RPAREN;
@@ -26,11 +28,14 @@ funciones: 'sin'
 	|	'acos'
 	| 	'ln'
 	|	'log'
+	| 	'sqrt'
 	;
 
 
 POINT : '.';
 POW : '^';
+MOD : '%';
+PI: 'pi' ;
 
 ID	: [a-zA-Z]+ ;
 NEWLINE : [\r\n]+ ;
@@ -42,8 +47,6 @@ ADD : '+' ;
 SUB : '-' ;
 LPAREN : '(' ;
 RPAREN : ')' ;
-RAIZ: 'sqrt';
-PI: 'pi' ;
 
 NUMERO_CIENTIFICO : NUMERO (('E' | 'e') SIGN? NUMERO)?;
 SIGN : ('+' | '-');
