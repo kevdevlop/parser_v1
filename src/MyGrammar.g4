@@ -33,7 +33,6 @@ funciones: 'sin'
 	;
 
 
-
 POINT : '.';
 POW : '^';
 MOD : '%';
