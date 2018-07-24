@@ -7,13 +7,24 @@ stat: expr NEWLINE  		#printExpr
 	| NEWLINE				#blank
 	;
 
-expr: expr (MUL|DIV) expr 	#MulDiv
-	| expr (ADD|SUB) expr 	#AddSuv
+expr: expr (MUL|DIV) expr	#MulDiv
+	| expr (ADD|SUB) expr	#AddSuv
+	| LPAREN expr POW expr RPAREN		#Pow
 	| INT					#int
 	| ID					#id
 	| LPAREN expr RPAREN	#parens
 	;
 
+
+funciones: SIN
+	|	COS
+	|	TAN
+	|	RAIZ
+	| 	PI
+	| 	LN
+	|	LOG
+	|	RAIZ
+	;
 
 POINT : '.';
 POW : '^';

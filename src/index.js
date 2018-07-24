@@ -78,6 +78,15 @@ import { MyGrammarLexer, MyGrammarParser, MyGrammarVisitor } from './MyGrammar.g
  		return parseInt(ctx.INT().getText());
  	}
 
+    visitPow(ctx){
+        var left = this.visit(ctx.expr(0));
+        var right = this. visit(ctx.expr(1));
+        if (right != null) {
+            return Math.pow(left, right);
+        }
+        return left;
+    }
+
  	containsKey(array,id) {
  		for (var key in array) {
  			if (key === id) {
